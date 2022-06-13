@@ -3,6 +3,7 @@ module.exports = (app)=>{
     app.get('/login', (req,res)=>{
         res.render('login.ejs')
     })
+
     //abrir a view atividades 
     app.post ('/login', async(req,res)=>{
         //conectar com o banco de dados 
@@ -20,10 +21,12 @@ module.exports = (app)=>{
         if(!comparar){
             return res.send("Senha incorreta")
         }
+        
         //redirecionar para a rota get atividades
         res.redirect('/atividades?id='+procurar._id)
     })
 }
+
 //dados.id - formulário hidden-id 
 //req.body é uma informação que vem pelo corpo do formularip
 //req.query é pela barra de endereço
