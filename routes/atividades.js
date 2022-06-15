@@ -65,9 +65,19 @@ module.exports = (app)=>{
         //redirecionar para  a rota atividades
         res.redirect('/atividades?id='+entregue.usuario)
     })
-    
+    //desfazer ações
+    app.get("/desfazer", async(req,res)=>{
+        //recuperar o parâmetro id da barra de endereço
+        var id = req.query.id
+        var entregue = await atividades.findOneAndUpdate(
+            {_id:id}, 
+            {status:0})
+        //redirecionar para  a rota atividades
+        res.redirect('/atividades?id='+desfazer.usuario)
+    })
+
 }
 
 //registro ok, login ok, mas gravou, erro: objeto teve o valor vazio da comparação id model usuarios
 //nos campos tipo hidden estao sem valor, só o nome tem value. logo, achamos o problem
-//qm mandou as informações p o cara atividades é o cara login (Mas ta certo pq no ele taprpcurando e levando id)
+//qm mandou as informações p o cara atividades é o cara login (Mas ta certo pq no ele taprpcurando e levando id
